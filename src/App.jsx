@@ -6,6 +6,13 @@ import { BsRobot, BsCpu, BsStars } from 'react-icons/bs';
 import SectionTitle from './components/SectionTitle';
 import { navItems, skills, experiences, projects, education } from './data/content';
 
+const resumeLinks = [
+  { label: 'AI Resume', href: '/DIVINE_JOSHUA_GBADAMOSI_AI_Engineer.pdf' },
+  { label: 'Data Resume', href: '/DIVINE_JOSHUA_GBADAMOSI_Data_Analyst.pdf' },
+  { label: 'Full-Stack Resume', href: '/DIVINE_JOSHUA_GBADAMOSI_Full_Stack_Developer.pdf' },
+  { label: 'Cover Letter', href: '/Cover Letter.pdf' },
+];
+
 const skillIcons = {
   Python: SiPython,
   JavaScript: SiJavascript,
@@ -90,16 +97,26 @@ function App() {
       <main id="home">
         <section className="mx-auto grid min-h-screen max-w-7xl items-center gap-12 px-6 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="max-w-3xl">
-            <p className="mb-5 inline-flex rounded-full border border-sky-400/30 bg-sky-500/10 px-4 py-2 text-sm font-medium text-sky-200">AI Engineer • Machine Learning Engineer • Data Analyst • Full-Stack Developer</p>
+            <div className="mb-6 flex items-center gap-4">
+              <div className="relative h-20 w-20 overflow-hidden rounded-full border-2 border-sky-400/40 shadow-glow">
+                <img src="/IMG-20250504-WA0011.jpg" alt="Divine Gbadamosi portrait" className="h-full w-full object-cover" />
+              </div>
+              <div>
+                <p className="text-sm uppercase tracking-[0.35em] text-sky-300">AI Engineer • Machine Learning Engineer • Data Analyst • Full-Stack Developer</p>
+                <p className="mt-2 text-sm text-slate-300">Building intelligent AI systems, scalable ML solutions, and data-driven applications.</p>
+              </div>
+            </div>
             <h1 className="text-4xl font-semibold leading-tight text-white sm:text-6xl">
-              Hello, I’m <span className="bg-gradient-to-r from-sky-300 via-blue-400 to-violet-400 bg-clip-text text-transparent">Divine Gbadamosi</span>
+              Hello, I’m <span className="bg-gradient-to-r from-sky-300 via-blue-400 to-violet-400 bg-clip-text text-transparent">Divine Joshua Gbadamosi</span>
             </h1>
             <p className="mt-6 text-xl leading-8 text-slate-300">{typedText}<span className="ml-1 animate-pulse">|</span></p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-3">
               <a href="#projects" className="rounded-full bg-gradient-to-r from-sky-500 to-violet-500 px-6 py-3 font-semibold text-white shadow-glow transition hover:scale-105">View Projects</a>
-              <a href="/Divine_Gbadamosi_Resume.pdf" download className="rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold text-slate-200 transition hover:bg-white/10">
-                <span className="mr-2 inline-block">⬇</span>Download CV
-              </a>
+              {resumeLinks.map((resume) => (
+                <a key={resume.label} href={resume.href} download className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-white/10">
+                  <span className="mr-2 inline-block">⬇</span>{resume.label}
+                </a>
+              ))}
             </div>
             <div className="mt-10 flex gap-4 text-2xl text-slate-300">
               <a href="https://github.com/Divine123-glitch" target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 p-3 transition hover:text-sky-300"><FaGithub /></a>
@@ -140,7 +157,14 @@ function App() {
               <div className="relative flex flex-col items-center">
                 <div className="relative">
                   <div className="absolute inset-0 animate-pulse rounded-full bg-gradient-to-r from-sky-500/40 via-violet-500/30 to-cyan-500/40 blur-2xl" />
-                  <img src="/profile.svg" alt="Divine Gbadamosi portrait" className="h-56 w-56 rounded-full border border-sky-400/40 object-cover shadow-glow" />
+                  <img
+                    src="/IMG-20250504-WA0011.jpg"
+                    alt="Divine Gbadamosi portrait"
+                    onError={(event) => {
+                      event.currentTarget.src = '/profile.svg';
+                    }}
+                    className="h-56 w-56 rounded-full border border-sky-400/40 object-cover shadow-glow"
+                  />
                 </div>
                 <div className="mt-8 flex flex-wrap justify-center gap-3">
                   {['Python', 'AI', 'ML', 'React'].map((badge) => (
@@ -161,7 +185,11 @@ function App() {
                 I specialize in developing end-to-end machine learning systems, AI-powered applications, intelligent automation workflows, and modern web applications. My experience includes working with transformer models, vector databases, retrieval-augmented generation (RAG), FastAPI, React, and cloud technologies to build scalable, production-ready software.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <a href="/Divine_Gbadamosi_Resume.pdf" download className="rounded-full bg-gradient-to-r from-sky-500 to-violet-500 px-6 py-3 font-semibold text-white transition hover:scale-105"><span className="mr-2">⬇</span>Download Resume</a>
+                {resumeLinks.map((resume) => (
+                  <a key={resume.label} href={resume.href} download className="rounded-full bg-gradient-to-r from-sky-500 to-violet-500 px-6 py-3 font-semibold text-white transition hover:scale-105">
+                    <span className="mr-2">⬇</span>{resume.label}
+                  </a>
+                ))}
                 <a href="#contact" className="rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold text-slate-100 transition hover:bg-white/10">Let’s Connect</a>
               </div>
               <div className="mt-10 grid gap-4 md:grid-cols-2">

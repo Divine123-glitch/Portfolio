@@ -208,7 +208,7 @@ function App() {
                 </div>
                 <div className="mt-8 flex flex-wrap justify-center gap-3">
                   {['Python', 'AI', 'ML', 'React'].map((badge) => (
-                    <span key={badge} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">{badge}</span>
+                    <span key={badge} className={`rounded-full border px-4 py-2 text-sm ${isDark ? 'border-white/10 bg-white/5 text-slate-200' : 'border-slate-300 bg-slate-100 text-slate-700'}`}>{badge}</span>
                   ))}
                 </div>
               </div>
@@ -287,16 +287,24 @@ function App() {
         <section id="projects" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <SectionTitle isDark={isDark} eyebrow="Projects" title="Selected Work" description="A range of applied AI, machine learning, and full-stack builds that showcase impact and breadth." />
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {projects.map((project, index) => (
-              <motion.article key={project.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.05 }} className={`${themeClasses.card} group rounded-3xl p-6 transition hover:-translate-y-1 hover:border-sky-400/30`}>
-                <div className="mb-5 h-32 rounded-2xl bg-gradient-to-br from-sky-500/20 via-violet-500/20 to-transparent" />
-                <h3 className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{project.title}</h3>
-                <p className={`mt-3 text-sm leading-7 ${themeClasses.heroText}`}>{project.description}</p>
-                <a href={project.link} target="_blank" rel="noreferrer" className={`mt-6 inline-flex items-center gap-2 text-sm font-semibold ${isDark ? 'text-sky-300 group-hover:text-sky-200' : 'text-sky-600 group-hover:text-sky-500'}`}>
-                  View repository <FaExternalLinkAlt />
-                </a>
-              </motion.article>
-            ))}
+            {projects.map((project, index) => {
+              const accent = index % 3 === 0 ? 'from-sky-500 via-cyan-400 to-blue-600' : index % 3 === 1 ? 'from-violet-500 via-fuchsia-500 to-purple-700' : 'from-emerald-500 via-teal-400 to-cyan-600';
+              return (
+                <motion.article key={project.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.05 }} className={`${themeClasses.card} group rounded-3xl p-6 transition hover:-translate-y-1 hover:border-sky-400/30`}>
+                  <div className={`relative mb-5 h-32 overflow-hidden rounded-2xl bg-gradient-to-br ${accent}`}>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.45),transparent_35%)]" />
+                    <div className="absolute bottom-4 left-4 h-16 w-16 rounded-2xl border border-white/40 bg-white/20 backdrop-blur-sm" />
+                    <div className="absolute right-4 top-4 h-10 w-20 rounded-full border border-white/40 bg-white/20" />
+                    <div className="absolute bottom-5 right-5 h-12 w-12 rounded-full border border-white/40 bg-white/30" />
+                  </div>
+                  <h3 className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>{project.title}</h3>
+                  <p className={`mt-3 text-sm leading-7 ${themeClasses.heroText}`}>{project.description}</p>
+                  <a href={project.link} target="_blank" rel="noreferrer" className={`mt-6 inline-flex items-center gap-2 text-sm font-semibold ${isDark ? 'text-sky-300 group-hover:text-sky-200' : 'text-sky-600 group-hover:text-sky-500'}`}>
+                    View repository <FaExternalLinkAlt />
+                  </a>
+                </motion.article>
+              );
+            })}
           </div>
         </section>
 

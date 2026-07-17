@@ -25,7 +25,7 @@ export const experiences = [
   {
     title: 'AI Engineering Fellow',
     company: 'Publica Academy',
-    period: '2024 – Present',
+    period: '2025 – 2026',
     description: 'Leading AI-driven product experimentation, model integration, and data-centric development workflows with a strong focus on applied engineering.',
   },
 ];
